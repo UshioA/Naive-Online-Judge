@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+  # NoSQL Database
+  mongo:
+    image: bitnami/mongodb:6.0
+    restart: always
+    environment:
+      - MONGODB_ROOT_PASSWORD=naive_root
+      - MONGODB_USERNAME=naive
+      - MONGODB_PASSWORD=naive
+      - MONGODB_DATABASE=naive
+    volumes:
+      - ./data/mongo:/bitnami/mongodb
+    ports:
+      - "127.0.0.1:23001:27017"
+
+  # Object Storage
+  minio:
+    image: bitnami/minio:2022
+    restart: always
+    environment:
+      - MINIO_ROOT_USER=naive_minio
+      - MINIO_ROOT_PASSWORD=naive_minio
+      - MINIO_DEFAULT_BUCKETS=naive
+    volumes:
+      - ./data/minio:/data
+    ports:
+      - "127.0.0.1:23002:9000"
+      - "127.0.0.1:23003:9001"
+
+  # Message broker
+  rabbitmq:
+    image: bitnami/rabbitmq:3.10
+    restart: always
+    environment:
+      - RABBITMQ_USERNAME=naive
+      - RABBITMQ_PASSWORD=naive
+    volumes:
+      - ./data/rabbitmq:/bitnami
+    ports:
+      - "127.0.0.1:23004:5672"
+      - "127.0.0.1:23005:15672"
+
+  # In-memory cache
+  redis:
+    image: bitnami/redis:7.0
+    restart: always
+    environment:
+      - REDIS_PASSWORD=naive
+    volumes:
+      - ./data/redis:/bitnami/redis/data
+    ports:
+      - "127.0.0.1:23006:6379"
+
+  # Docker registry
+  # To restrict access to registry, refer to
+  # https://docs.docker.com/registry/deploying/#restricting-access
+  registry:
+    image: registry:2
+    restart: always
+    volumes:
+      - ./data/registry:/var/lib/registry
+    ports:
+      - "127.0.0.1:23009:5000"

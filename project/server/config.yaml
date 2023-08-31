@@ -1,0 +1,54 @@
+server:
+  host: 0.0.0.0
+  port: 8080
+
+admin:
+  username: "000000000"
+  fullname: TestAdmin
+
+jwt:
+  secret: naive-secret
+  days: 7
+
+oauth2:
+  # change `clientid' and `clientsecret' yourself. if you dont understand, search `oauth2.0'
+  config:
+    clientid: e1145141919810
+    clientsecret: e1145141919810
+    endpoint:
+      authurl: https://git.nju.edu.cn/oauth/authorize
+      tokenurl: https://git.nju.edu.cn/oauth/token
+    redirecturl: http://127.0.0.1:3000
+    scopes:
+      - read_user
+  userapi: https://git.nju.edu.cn/api/v4/user
+
+mongodb:
+  host: localhost
+  port: 23001
+  database: naive
+  username: naive
+  password: naive
+
+redis:
+  host: localhost
+  port: 23006
+  database: 0
+  password: naive
+
+minio:
+  endpoint: localhost:23002
+  secure: false
+  accesskey: naive_minio
+  secretkey: naive_minio
+  region: cn-south-1
+  bucket: naive
+
+docker:
+  url: localhost:23009
+
+judger:
+  num: 1
+
+debug:
+  debug: true
