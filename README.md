@@ -1,6 +1,6 @@
 # Naive Online Judge
 
-**Naive Online Judge** 是南京大学`网络应用开发`课程的课程项目. 实现了一个具有基本功能的Online Judge.
+**Naive Online Judge** 是南京大学网络应用开发课程的课程项目. 实现了一个具有基本功能的Online Judge.
 
 `web`文件夹是一个`React` App. 是应用的前端。
 
